@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .certificate {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+            .certificate h2 {
+                text-align: center;
+            }
+
+        form {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+    <div class="certificate">
+        <h2>Certificate Generator</h2>
+        <form id="certificateForm">
+            <div>
+                <label for="name">Recipient's Name:</label><br>
+                <input type="text" id="name" required><br>
+            </div>
+            <div>
+                <label for="achievement">Achievement:</label><br>
+                <input type="text" id="achievement" required><br>
+            </div>
+            <div>
+                <button type="button" onclick="generateCertificate()">Generate Certificate</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function generateCertificate() {
+            // Get values from the form
+            var name = document.getElementById("name").value;
+            var achievement = document.getElementById("achievement").value;
+
+            // Certificate content
+            var certificateContent = `
+                    <h2>Certificate of Achievement</h2>
+                    <p>This certificate is presented to</p>
+                    <h3>${name}</h3>
+                    <p>For outstanding achievement in ${achievement}</p>
+                `;
+
+            // Open a new window to display the certificate
+            var newWindow = window.open('', '_blank');
+            newWindow.document.body.innerHTML = certificateContent;
+
+            // Trigger download of the certificate as a PDF
+            newWindow.document.title = "Certificate";
+            var css = '<style>' + document.getElementsByTagName("style")[0].innerHTML + '</style>';
+            newWindow.document.head.innerHTML += css;
+            var printScript = '<script>window.onload = function() { window.print(); }</script>';
+            newWindow.document.body.innerHTML += printScript;
+    }
+    </script>
+</body>
+</html>

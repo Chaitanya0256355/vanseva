@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .options label {
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <div class="question" id="question1">
+            <h2>Question 1: What is the primary purpose of tree donation programs?</h2>
+            <div class="options">
+                <label><input type="radio" name="q1" value="a"> a)  Beautification of urban areas</label>
+                <label><input type="radio" name="q1" value="b"> b) Conservation of endangered species</label>
+                <label><input type="radio" name="q1" value="c"> c) 5</label>
+            </div>
+        </div>
+        <div class="question" id="question2">
+            <h2>Question 2: What is the capital of France?</h2>
+            <div class="options">
+                <label><input type="radio" name="q2" value="a"> a) London</label>
+                <label><input type="radio" name="q2" value="b"> b) Paris</label>
+                <label><input type="radio" name="q2" value="c"> c) Berlin</label>
+            </div>
+        </div>
+        <button onclick="submitQuiz()">Submit Quiz</button>
+    </div>
+    Beautification of urban areas
+    b) Conservation of endangered species
+    c) Combatting deforestation and climate change
+    d) Enhancing agricultural productivity
+    <script>
+        function submitQuiz() {
+            const answers = {
+                q1: document.querySelector('input[name="q1"]:checked').value,
+                q2: document.querySelector('input[name="q2"]:checked').value
+            };
+
+            let score = 0;
+
+            if (answers.q1 === 'b') {
+                score++;
+            }
+
+            if (answers.q2 === 'b') {
+                score++;
+            }
+
+            alert(`You scored ${score} out of 2`);
+        }
+    </script>
+
+</body>
+</html>
+    
